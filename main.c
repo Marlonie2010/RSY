@@ -49,7 +49,7 @@ void SendColor(short color){
 			PORTB |= (1<<5);
 			_delay_us(0.25f);
 			PORTB &= ~(1<<5);
-			_delay_us(0.6f);
+			_delay_us(0.5f);
 		}
 				
 	}
@@ -74,8 +74,20 @@ void Present(){
 
 short c = 0;
 
+void Reset(){
+		for(short x = 0;x < WIDTH;x++){
+			for(short y = 0;y < HEIGHT;y++){
+				
+				Screen[x][y].r = 0;
+				Screen[x][y].g = 0;
+				Screen[x][y].b = 0;
+				
+			}
+		}
+}
+
 void Animnation1(){
-	
+	//aids aka stroboskop
 	if(c){
 		c = 0;
 	}else{
@@ -96,7 +108,7 @@ void Animnation1(){
 }
 
 void Animnation2(){
-	
+	//schachbrett matrix
 	if(c){
 		c = 0;
 		}else{
@@ -128,7 +140,7 @@ static short Collide = 0;
 static short CollideThrows = 0;
 
 void Animnation3(){
-
+	//linien die collidieren + explosion ESKALATION!!! | Minecraft let's play 
 	if(Collide){
 		if(c){
 			c = 0;
@@ -138,14 +150,49 @@ void Animnation3(){
 		
 		for(short x = 0;x < WIDTH;x++){
 			for(short y = 0;y < HEIGHT;y++){
-				
-				Screen[x][y].r = c * 0xff;
-				Screen[x][y].g = c * 0x66;
-				Screen[x][y].b = c * 0;
-				
+						
+				Screen[x][y].r = 0;
+				Screen[x][y].g = 0;
+				Screen[x][y].b = 0;
+						
 			}
 		}
 		
+		//mitte
+		Screen[3][2].r = c * 0xff;
+		Screen[3][2].g = c * 0x66;
+		Screen[3][2].b = c * 0;
+		
+		Screen[4][2].r = c * 0xff;
+		Screen[4][2].g = c * 0x66;
+		Screen[4][2].b = c * 0;
+		
+		//oben
+		Screen[3][3].r = c * 0xff;
+		Screen[3][3].g = c * 0x66;
+		Screen[3][3].b = c * 0;
+		
+		Screen[4][3].r = c * 0xff;
+		Screen[4][3].g = c * 0x66;
+		Screen[4][3].b = c * 0;
+		
+		//unten
+		Screen[3][1].r = c * 0xff;
+		Screen[3][1].g = c * 0x66;
+		Screen[3][1].b = c * 0;
+		
+		Screen[4][1].r = c * 0xff;
+		Screen[4][1].g = c * 0x66;
+		Screen[4][1].b = c * 0;
+		
+		//seite
+		Screen[2][2].r = c * 0xff;
+		Screen[2][2].g = c * 0x66;
+		Screen[2][2].b = c * 0;
+				
+		Screen[5][2].r = c * 0xff;
+		Screen[5][2].g = c * 0x66;
+		Screen[5][2].b = c * 0;
 		
 		_delay_ms(20.0f);
 		
@@ -198,13 +245,13 @@ static char R = 255, G = 0, B = 0;
 static char sim_a = 0, sim_k = 0, sim_c = 0;
 
 void Animnation4(){
+	//farb verlauf
+	
 	if(R == 0 && G == 255){sim_a = 1;}else if(R == 255){sim_a = -1;}else if(R == 0){sim_a = 0;}
 	if(G == 0 && B == 255){sim_k = 1;}else if(G == 255){sim_k = -1;}else if(G == 0){sim_k = 0;}
 	if(B == 0 && R == 255){sim_c = 1;}else if(B == 255){sim_c = -1;}else if(B == 0){sim_c = 0;}
 			
-			
-			
-			
+		
 	R += sim_a;
 	G += sim_k;
 	B += sim_c;
@@ -222,6 +269,29 @@ void Animnation4(){
 	_delay_ms(16.666f);
 }
 
+void Animnation5(){
+	
+	//farb verlauf 2		
+	if(R == 0 && G == 255){sim_a = 1;}else if(R == 255){sim_a = -1;}else if(R == 0){sim_a = 0;}
+	if(G == 0 && B == 255){sim_k = 1;}else if(G == 255){sim_k = -1;}else if(G == 0){sim_k = 0;}
+	if(B == 0 && R == 255){sim_c = 1;}else if(B == 255){sim_c = -1;}else if(B == 0){sim_c = 0;}
+		
+		
+	R += sim_a;
+	G += sim_k;
+	B += sim_c;
+
+	Reset();
+
+	for(char y = 0;y < HEIGHT;y++){
+		Screen[0][y].r = R;
+		Screen[0][y].g = G;
+		Screen[0][y].b = B;
+	}
+
+	_delay_ms(16.666f);
+	
+}
 
 int main(void)
 {
@@ -265,6 +335,9 @@ int main(void)
 			break;
 			case 3:
 				Animnation4();
+			break;
+			case 4:
+				Animnation5();
 			break;
 		}
 		
