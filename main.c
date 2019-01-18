@@ -18,6 +18,10 @@
 
 #define ADDRESS_MODE 0x00
 
+#define M_PI 3.14159265358979323846264338327950288
+#define degToRad(angleInDegrees) ((angleInDegrees) * M_PI / 180.0)
+#define radToDeg(angleInRadians) ((angleInRadians) * 180.0 / M_PI
+
 /*
 	LED Matrix: B5
 	Taster: D3 <- Pull up
@@ -84,6 +88,18 @@ void Reset(){
 				
 			}
 		}
+}
+
+void Reset2(char R, char G, char B){
+	for(short x = 0;x < WIDTH;x++){
+		for(short y = 0;y < HEIGHT;y++){
+			
+			Screen[x][y].r = R;
+			Screen[x][y].g = G;
+			Screen[x][y].b = B;
+			
+		}
+	}
 }
 
 void Animnation1(){
@@ -270,28 +286,77 @@ void Animnation4(){
 }
 
 void Animnation5(){
+	//linien
+	Reset2(0x66, 0x66, 0);
 	
-	//farb verlauf 2		
-	if(R == 0 && G == 255){sim_a = 1;}else if(R == 255){sim_a = -1;}else if(R == 0){sim_a = 0;}
-	if(G == 0 && B == 255){sim_k = 1;}else if(G == 255){sim_k = -1;}else if(G == 0){sim_k = 0;}
-	if(B == 0 && R == 255){sim_c = 1;}else if(B == 255){sim_c = -1;}else if(B == 0){sim_c = 0;}
+	R++;
+	if(R >= 255)
+		R = 0;
 		
-		
-	R += sim_a;
-	G += sim_k;
-	B += sim_c;
+	char y = R / (255 / HEIGHT);
 
-	Reset();
+	for(char x = 0; x < WIDTH; x++)
+	{
+		Screen[x][y].r = 0x0;
+		Screen[x][y].g = 0xff;
+		Screen[x][y].b = 0xff;
+	}
+	
+	char x = R / (255 / WIDTH);
+	
+	for(char y = 0; y < HEIGHT; y++)
+	{
 
-	for(char y = 0;y < HEIGHT;y++){
-		Screen[0][y].r = R;
-		Screen[0][y].g = G;
-		Screen[0][y].b = B;
+		if(Screen[x][y].g == 0xff){
+			Screen[x][y].r = 0xff;
+			Screen[x][y].g = 0x00;
+			Screen[x][y].b = 0x00;
+		}else{
+			Screen[x][y].r = 0x0;
+			Screen[x][y].g = 0xff;
+			Screen[x][y].b = 0xff;
+		}
+
 	}
 
-	_delay_ms(16.666f);
+	c -= HEIGHT;
+
+	_delay_ms(60.666f);
 	
 }
+
+void Animnation6(){
+	//sinus
+	Reset2(0x66, 0x66, 0);
+	
+	float start = c % 360;
+	c++;
+	
+	float x_step = 360.0f / WIDTH;
+	
+	for(char x = 0; x < WIDTH; x++){
+		float r = (c) + x * x_step;
+		r = degToRad(r);
+		//y = 4 * sin(off + x * (1 / 360)) + off
+		int y = (int)((sin(r) * (HEIGHT) * 0.5f) + (HEIGHT) * 0.5f);
+		
+		Screen[x][y].r = 0x0;
+		Screen[x][y].g = 0xff;
+		Screen[x][y].b = 0xff;
+	}
+
+	for(char x = 0; x < WIDTH; x++){
+		
+		for(char y = 0; Screen[x][y].g != 0xff;y++){
+			Screen[x][y].r = 0x0;
+			Screen[x][y].g = 0xff;
+			Screen[x][y].b = 0xff;
+		}
+
+	}
+
+}
+
 
 int main(void)
 {
@@ -314,7 +379,7 @@ int main(void)
 		}else{
 			if(ButtonOn){
 				currAni++;
-				if(currAni >= 4){
+				if(currAni >= 6){
 					currAni = 0;
 				}
 				eeprom_write_float( ADDRESS_MODE, currAni );
@@ -338,6 +403,9 @@ int main(void)
 			break;
 			case 4:
 				Animnation5();
+			break;
+			case 5:
+				Animnation6();
 			break;
 		}
 		
