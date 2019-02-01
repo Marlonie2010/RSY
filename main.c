@@ -6,6 +6,7 @@
  */ 
 
 #include <string.h>
+#include <stdio.h>
 
 #define WIDTH 8
 #define HEIGHT 5
@@ -101,6 +102,237 @@ void Reset2(char R, char G, char B){
 		}
 	}
 }
+
+#define Number_R 0xff
+#define Number_G 0
+#define Number_B 0
+
+void SetPixel(int x, int y, short r, short g, short b){
+	
+	if(x < 0 || x >= WIDTH)
+		return;
+	
+	if(y < 0 || y >= HEIGHT)
+		return;
+	
+	Screen[x][y].r = r;
+	Screen[x][y].g = g;
+	Screen[x][y].b = b;
+}
+
+void ShowNummber(short nummber){
+	
+	switch(nummber){
+		case 10:{
+			SetPixel(2, 4, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			SetPixel(4, 3, Number_R, Number_G, Number_B);
+			SetPixel(5, 3, Number_R, Number_G, Number_B);
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(4, 2, Number_R, Number_G, Number_B);
+			SetPixel(5, 2, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 0, Number_R, Number_G, Number_B);
+			SetPixel(3, 0, Number_R, Number_G, Number_B);
+			SetPixel(4, 0, Number_R, Number_G, Number_B);
+			SetPixel(5, 0, Number_R, Number_G, Number_B);
+		}			
+		break;
+		
+		case 9:{
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+					
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+					
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+		}			
+		break;
+		
+		case 8:{
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+					
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+					
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			SetPixel(4, 3, Number_R, Number_G, Number_B);
+			SetPixel(5, 3, Number_R, Number_G, Number_B);
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+		}			
+		break;
+		
+		case 7:{
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+		}
+		break;
+		
+		case 6:{
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			SetPixel(4, 3, Number_R, Number_G, Number_B);
+			SetPixel(5, 3, Number_R, Number_G, Number_B);
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			
+		}		
+		break;
+		
+		case 5:{
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+		}
+		break;
+		
+		case 4:{
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			
+		}
+		break;
+		
+		case 3:{
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+			
+		}
+		break;
+		
+		case 2:{
+			SetPixel(1, 3, Number_R, Number_G, Number_B);
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(1, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(4, 3, Number_R, Number_G, Number_B);
+			SetPixel(4, 2, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(6, 3, Number_R, Number_G, Number_B);
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 1, Number_R, Number_G, Number_B);
+		}
+		break;
+		
+		case 1:{
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(2, 2, Number_R, Number_G, Number_B);
+			SetPixel(3, 2, Number_R, Number_G, Number_B);
+			SetPixel(4, 2, Number_R, Number_G, Number_B);
+			SetPixel(5, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+		}
+		break;
+		
+		case 0:{
+			SetPixel(2, 3, Number_R, Number_G, Number_B);
+			SetPixel(3, 3, Number_R, Number_G, Number_B);
+			SetPixel(4, 3, Number_R, Number_G, Number_B);
+			SetPixel(5, 3, Number_R, Number_G, Number_B);
+			
+			SetPixel(1, 2, Number_R, Number_G, Number_B);
+			SetPixel(6, 2, Number_R, Number_G, Number_B);
+			
+			SetPixel(2, 1, Number_R, Number_G, Number_B);
+			SetPixel(3, 1, Number_R, Number_G, Number_B);
+			SetPixel(4, 1, Number_R, Number_G, Number_B);
+			SetPixel(5, 1, Number_R, Number_G, Number_B);
+		}
+		break;
+	}
+}
+
 
 void Animnation1(){
 	//aids aka stroboskop
@@ -358,6 +590,176 @@ void Animnation6(){
 }
 
 
+
+void Rocket(){
+
+	Reset2(0x66, 0x66, 0);
+	int newH;
+	
+	if(c > 11){
+		c = 11;
+	}
+	
+	c--;
+	if(c < 0){
+		
+		switch(c){
+			case -1:
+				SetPixel(6, 2, Number_R, Number_G, Number_B);
+				SetPixel(7, 2, Number_R, Number_G, Number_B);
+			break;
+			case -2:
+
+				SetPixel(5, 2, Number_R, Number_G, Number_B);
+				SetPixel(6, 2, Number_R, Number_G, Number_B);
+				SetPixel(7, 2, Number_R, Number_G, Number_B);
+				
+				SetPixel(7, 1, Number_R, Number_G, Number_B);
+				SetPixel(7, 3, Number_R, Number_G, Number_B);
+			break;
+			case -3:
+				SetPixel(4, 2, Number_R, Number_G, Number_B);
+				SetPixel(5, 2, Number_R, Number_G, Number_B);
+				SetPixel(6, 2, Number_R, Number_G, Number_B);
+				SetPixel(7, 2, Number_R, Number_G, Number_B);
+				
+				SetPixel(6, 1, Number_R, Number_G, Number_B);
+				SetPixel(6, 3, Number_R, Number_G, Number_B);
+				
+				SetPixel(7, 0, Number_R, Number_G, Number_B);
+				SetPixel(7, 4, Number_R, Number_G, Number_B);
+				
+			break;
+			case -4:
+				SetPixel(3, 2, Number_R, Number_G, Number_B);
+				SetPixel(4, 2, Number_R, Number_G, Number_B);
+				SetPixel(5, 2, Number_R, Number_G, Number_B);
+				SetPixel(6, 2, Number_R, Number_G, Number_B);
+			
+				SetPixel(5, 1, Number_R, Number_G, Number_B);
+				SetPixel(5, 3, Number_R, Number_G, Number_B);
+			
+				SetPixel(6, 0, Number_R, Number_G, Number_B);
+				SetPixel(6, 4, Number_R, Number_G, Number_B);
+			
+				SetPixel(7, 1, Number_R, Number_G, Number_B);
+				SetPixel(7, 2, Number_R, Number_G, Number_B);
+				SetPixel(7, 3, Number_R, Number_G, Number_B);
+			
+			break;
+			case -5:
+				SetPixel(2, 2, Number_R, Number_G, Number_B);
+				SetPixel(3, 2, Number_R, Number_G, Number_B);
+				SetPixel(4, 2, Number_R, Number_G, Number_B);
+				SetPixel(5, 2, Number_R, Number_G, Number_B);
+				
+				SetPixel(4, 1, Number_R, Number_G, Number_B);
+				SetPixel(4, 3, Number_R, Number_G, Number_B);
+				
+				SetPixel(5, 0, Number_R, Number_G, Number_B);
+				SetPixel(5, 4, Number_R, Number_G, Number_B);
+				
+				SetPixel(6, 1, Number_R, Number_G, Number_B);
+				SetPixel(6, 2, Number_R, Number_G, Number_B);
+				SetPixel(6, 3, Number_R, Number_G, Number_B);
+			
+				SetPixel(7, 2, Number_R, Number_G, Number_B);
+			break;
+			
+			case -6:
+			case -7:
+			case -8:
+			case -9:
+			case -10:
+			case -11:
+			case -12:
+			case -13:
+				newH = (c) + 5;
+				SetPixel(2 + newH, 2, Number_R, Number_G, Number_B);
+				SetPixel(3 + newH, 2, Number_R, Number_G, Number_B);
+				SetPixel(4 + newH, 2, Number_R, Number_G, Number_B);
+				SetPixel(5 + newH, 2, Number_R, Number_G, Number_B);
+			
+				SetPixel(4 + newH, 1, Number_R, Number_G, Number_B);
+				SetPixel(4 + newH, 3, Number_R, Number_G, Number_B);
+			
+				SetPixel(5 + newH, 0, Number_R, Number_G, Number_B);
+				SetPixel(5 + newH, 4, Number_R, Number_G, Number_B);
+			
+				SetPixel(6 + newH, 1, Number_R, Number_G, Number_B);
+				SetPixel(6 + newH, 2, Number_R, Number_G, Number_B);
+				SetPixel(6 + newH, 3, Number_R, Number_G, Number_B);
+			
+				SetPixel(7 + newH, 2, Number_R, Number_G, Number_B);
+			break;
+			default:
+				c = 11;
+			break;
+		}
+	
+		
+	}else{
+		ShowNummber(c);
+	}
+	
+	_delay_ms(600);
+
+}
+
+void Waterfall(){
+
+	//Simon
+	static char rainzaehler = 0;
+
+	for(char x = 0;x < WIDTH - rainzaehler;x++){
+		for(char y = 0;y < HEIGHT; y++){
+			if(x >= 1){
+				Screen[x - 1][y].b = 0;
+			}
+			Screen[x][y].b = 255;
+			Present();
+			_delay_ms(20);
+		}
+	}	
+	rainzaehler++;
+
+}
+
+void DJ_Effect(){
+	Reset2(0, 255, 0);
+
+	for(char x = 0;x < WIDTH;x++){
+		char r1= rand() % HEIGHT;
+
+		for(char y = 0;y < r1;y++){
+			SetPixel(x, y, 0, 0, 255);
+		}
+	}
+
+
+	_delay_ms(100);
+}
+
+void Welle(){
+	for(char x = 0; x < WIDTH; x++)
+	{
+		for(char y = 0; y < HEIGHT; y++)
+		{
+			Screen[x][y].r += 10;
+			if(Screen[x][y].b+50 <= 255)
+			{
+				Screen[x][y].b += 20;
+			}else
+			{
+				Reset2(0, 0, 0);
+			}
+		}
+		_delay_ms(20);
+		Present();
+	}
+}
+
+
 int main(void)
 {
     DDRB|=(1<<5);
@@ -370,6 +772,8 @@ int main(void)
 	
 	currAni = eeprom_read_float(ADDRESS_MODE);
 	
+	Reset2(0, 25, 0);
+	
     while (1) 
     {
 		//Taster
@@ -379,11 +783,12 @@ int main(void)
 		}else{
 			if(ButtonOn){
 				currAni++;
-				if(currAni >= 6){
+				if(currAni >= 10){
 					currAni = 0;
 				}
 				eeprom_write_float( ADDRESS_MODE, currAni );
 				ButtonOn = 0;
+				Reset2(0, 25, 0);
 			}
 
 		}
@@ -406,6 +811,18 @@ int main(void)
 			break;
 			case 5:
 				Animnation6();
+			break;
+			case 6:
+				Rocket();
+			break;
+			case 7:
+				Waterfall();
+			break;
+			case 8:
+				DJ_Effect();
+			break;
+			case 9:
+				Welle();
 			break;
 		}
 		
